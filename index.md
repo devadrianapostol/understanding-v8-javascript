@@ -1,0 +1,38 @@
+# Brief Content
+
+- Introduction
+- Overview
+    - Virtual Machines
+    - History of V8
+- Parsing
+    - Abstract Syntaxt Tree (AST)
+- Compilers
+    - Generations
+        - Old and Young
+        - Allocation
+    - Hidden Classes
+    - Inline Caches (ICs)
+    - TurboFan
+    - Polimorfic Functions
+- Interpreter
+    - Ignition (Bytecode)
+- Garbage Collector
+    - Idle Time
+    - Orinoco
+- Using V8
+    - Heap vs Stack
+    - Terminal
+    - Profiling
+      - Metrics
+      - Debugging
+      - Tracing
+- ES Next and V8
+- Native on Web
+    - asm.js
+    - emscripten
+    - Binaryen
+    - Web Asssembly
+    - WebAssembly Explorer
+- Future on V8
+- Appendix
+    - How to build V8
