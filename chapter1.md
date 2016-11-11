@@ -1,3 +1,3 @@
 # Overview
 
-V8 has been evolved since was released in 2008. We are going to review the basic of the engine piece by piece. 
+V8 went launched in 2008, since them evolved in all their pieces that is composed. Adding new compilers, like Turbofan and amazing improvements on the Garbage Collector. We are going to review the basic of the engine piece by piece. 
