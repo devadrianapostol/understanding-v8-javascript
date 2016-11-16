@@ -5,5 +5,5 @@
 * [Native Web](webassembly.md)
    * WebAssembly
 * Parsing
-   * [AST](ast.md)
+   * [Abstract Syntax Tree](ast.md)
 
