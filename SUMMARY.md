@@ -3,7 +3,7 @@
 * [Introduction](README.md)
 * [Overview](chapter1.md)
 * [Native Web](webassembly.md)
-   * WebAssembly
+   * [WebAssembly](webassembly.md)
 * Parsing
    * [Abstract Syntax Tree](ast.md)
 
