@@ -2,5 +2,5 @@
 
 * [Introduction](README.md)
 * [Overview](chapter1.md)
-* [WebAssembly](webassembly.md)
+* [Native Web](webassembly.md)
 
