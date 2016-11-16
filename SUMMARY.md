@@ -4,7 +4,6 @@
 * [Overview](chapter1.md)
 * [Native Web](webassembly.md)
    * WebAssembly
-* AST
 * Parsing
    * [AST](ast.md)
 
