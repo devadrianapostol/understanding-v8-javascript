@@ -15,7 +15,9 @@ Garbage collector is the automatic memory management for V8 and attempts to recl
 
 ### Native Web
 
+The target to use native apps on the web has evolved along the time, we are going to review some the first steps like Google Native Client, asm.js and the last try to bring native to web, WebAssembly.
+
 ### Tooling
 
-
+A collection of tools and CLI used to profile and tracing V8, Node.js and Google Chrome.
 
