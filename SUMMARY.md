@@ -6,5 +6,5 @@
    * WebAssembly
 * AST
 * Parsing
-   * AST
+   * [AST](ast.md)
 
