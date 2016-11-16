@@ -1,4 +1,4 @@
-# AST
+# Abstract Syntax Tree
 
 #### What’s an Abstract syntax tree (AST)?
 
