@@ -20,7 +20,12 @@ Now, we'll see a small overview about how AST becomes and where is used and how 
 
 ### Static Analysis of Javascript Statements
 
-The static analysis has multiple benefits, like replace double quotes by single quotes or display the coverage of your javascript files based on your unit test.
+The static analysis has multiple benefits, like for instance:
+
+* replace double quotes by single quotes
+* Display the coverage of your javascript files based on your unit test.
+
+
 
 ![](/assets/ast.png)
 
