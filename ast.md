@@ -18,6 +18,11 @@ To solve these inconsistencies, not that far way, it started the confluence of t
 
 Now, we'll see a small overview about how AST becomes and where is used and how to use for our own benefit in the near future.
 
+### Static Analysis of Javascript Statements
+
+The static analysis has multiple benefits, like replace double quotes by single quotes or display the coverage of your javascript files based on your unit test.
+
+![](/assets/ast.png)
 
 
 
