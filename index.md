@@ -14,8 +14,8 @@
     - Inline Caches (ICs)
     - TurboFan
     - Polimorfic Functions
-    - Interpreter
-        - Ignition
+- Interpreter
+    - Ignition
 - Garbage Collector
     - Idle Time
     - Orinoco
