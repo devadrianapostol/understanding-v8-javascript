@@ -25,8 +25,64 @@ The static analysis has multiple benefits, like for instance:
 * replace double quotes by single quotes
 * Display the coverage of your javascript files based on your unit test.
 
+The static analysis has multiple benefits, like [replace double quotes by single quotes](http://ariya.ofilabs.com/2012/02/from-double-quotes-to-single-quotes.html) or [display the coverage](https://github.com/gotwarlost/istanbul#api) of your javascript files based on your unit test.
+
 
 ![](/assets/ast.png)
 
+Let’s analyse a basic example:
 
+The following code represente a sentenence variable declaration.
 
+````
+var a;
+````
+The whole block represents a [VariableDeclaration](https://github.com/estree/estree/blob/master/es2015.md#variabledeclaration), it what it is. The **VariableDeclaration** is the “var” keyword, inside of this node we will found the **Identifier** which represents the `a`. The tree view visualize walk thought our small sentence in a syntax way.
+
+````json
+{
+  "type": "Program",
+  "start": 0,
+  "end": 6,
+  "range": [
+    0,
+    6
+  ],
+  "body": [
+    {
+      "type": "VariableDeclaration",
+      "start": 0,
+      "end": 6,
+      "range": [
+        0,
+        6
+      ],
+      "declarations": [
+        {
+          "type": "VariableDeclarator",
+          "start": 4,
+          "end": 5,
+          "range": [
+            4,
+            5
+          ],
+          "id": {
+            "type": "Identifier",
+            "start": 4,
+            "end": 5,
+            "range": [
+              4,
+              5
+            ],
+            "name": "a"
+          },
+          "init": null
+        }
+      ],
+      "kind": "var"
+    }
+  ],
+  "sourceType": "module"
+}
+````
+In AST **all is a Node**, any element extend from it and search for a specific node we will need to loop the whole tree and search exactly what we need. For instance, if our target were to replace “a” variable by “b” then we are going to need some tools to modify, travel through and remove or add our original code.
