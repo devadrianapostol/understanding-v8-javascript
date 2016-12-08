@@ -85,4 +85,8 @@ The whole block represents a [VariableDeclaration](https://github.com/estree/est
   "sourceType": "module"
 }
 ````
-In AST **all is a Node**, any element extend from it and search for a specific node we will need to loop the whole tree and search exactly what we need. For instance, if our target were to replace “a” variable by “b” then we are going to need some tools to modify, travel through and remove or add our original code.
+In AST **all is a Node**, any element extend from it and search for a specific node we will need to loop the whole tree and search exactly what we need. For instance, if our target were to replace `a` variable by `b` then we are going to need some tools to modify, travel through and remove or add our original code.
+
+
+### Javascript Tooling
+
