@@ -6,4 +6,5 @@
    * [WebAssembly](webassembly_intro.md)
 * [Parsing](parsing.md)
    * [Abstract Syntax Tree](ast.md)
+* [Compilers](compilers.md)
 
