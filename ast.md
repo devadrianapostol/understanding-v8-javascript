@@ -26,7 +26,6 @@ The static analysis has multiple benefits, like for instance:
 * Display the coverage of your javascript files based on your unit test.
 
 
-
 ![](/assets/ast.png)
 
 
