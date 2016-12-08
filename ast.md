@@ -10,7 +10,6 @@ Exactly, the result of a syntax analysis. Futhermore, how this can be apply to J
 
 **Rhino** (javascript engine) was born as part of Nestcape project as Javascript interpreter, then it becomes open source under the hood of **Mozilla**. Rhino is mainly a converter from Javascript to Java classes, but, aside of that it has different uses, like as interpreter, then is when AST becomes important in our story.
 
-
 **AST** is the core of Rhino, and deeply used (forked mostly) Google Closure and YUI Compressor, both use the Java parser internally to analyse, parse and mangle the Javascript code.
 
 Spidermonkey has his own AST implementation and is documented as Parse API, and also it [seems Rhino has his own AST implementation](http://ramkulkarni.com/blog/understanding-ast-created-by-mozilla-rhino-parser/) as well and this changes based on the JS version and those specific javascript engines might change.
