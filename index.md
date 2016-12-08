@@ -15,7 +15,7 @@
     - TurboFan
     - Polimorfic Functions
 - Interpreter
-    - Ignition
+    - Ignition (Bytecode)
 - Garbage Collector
     - Idle Time
     - Orinoco
