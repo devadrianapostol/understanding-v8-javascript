@@ -215,6 +215,62 @@ console.log("id", id);
 
 The current version (on npm) it doesn’t have this [patch](https://github.com/ariya/esrefactor/pull/9), so, I managed only to rename variables.
 
+#### Esmangle
 
+Esmangle is a small minifier, one of many ECMAScript tools, this one in particular is has a interesting set of parameters to change the behaviour.
+
+``````javascript
+var esprima = require('esprima');
+var esmangle = require('esmangle');
+var escodegen = require('escodegen');
+var codeBase = require('./code');
+var ast = esprima.parse(codeBase.wholeFile());
+var result = esmangle.mangle(ast);  // gets mangled result
+console.log(escodegen.generate(result, {
+    format: {
+        renumber: true,
+        hexadecimal: true,
+        escapeless: true,
+        compact: true,
+        semicolons: false,
+        parentheses: false
+    }
+}));  
+// !function(){function a(e,f){var b,a,c,d;a=e.length;c=0;while(a){b=a>>>1;d=c+b;if(f(e[d])){a=b}else{c=d+1;a-=b+1}}return c}var b=a([2,3,5,7,11,13,17,19,23,29,31,37],function(a){return a>25})}()
+``````
+
+#### AST-Types
+
+Esprima has actually an [object accessible to compare node by Syntax type](https://github.com/jquery/esprima/blob/master/src/syntax.ts), this alternative is more suitable for Unit Testing.
+
+`````javascript
+var assert = require("assert");
+var n = require("ast-types").namedTypes;
+var b = require("ast-types").builders;
+var fooId = b.identifier("foo");
+var ifFoo = b.ifStatement(fooId, b.blockStatement([
+    b.expressionStatement(b.callExpression(fooId, []))
+]));
+assert.ok(n.IfStatement.check(ifFoo));
+assert.ok(n.Statement.check(ifFoo));
+assert.ok(n.Node.check(ifFoo));
+assert.ok(n.BlockStatement.check(ifFoo.consequent));
+assert.strictEqual(
+    ifFoo.consequent.body[0].expression.arguments.length,
+    0);
+assert.strictEqual(ifFoo.test, fooId);
+assert.ok(n.Expression.check(ifFoo.test));
+assert.ok(n.Identifier.check(ifFoo.test));
+assert.ok(!n.Statement.check(ifFoo.test));
+`````
+#### Harmony (ES6)
+
+Before Esprima supported ES6 and RxJS syntax in the after the version 2.0, there was a fork by facebook called esprima-fb. Actually is not necessary.
+
+### AST Explorer
+
+The AST explorer where you can convert automatically your source code to AST and traverse it in a nice user interfance.
+
+[http://astexplorer.net/](http://astexplorer.net/)
 
 
