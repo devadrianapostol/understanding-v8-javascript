@@ -16,6 +16,8 @@ Spidermonkey has his own AST implementation and is documented as Parse API, and 
 
 To solve these inconsistencies, not that far way, it started the confluence of these differences on the ESTree organisation, creating  [the first AST common specification](https://github.com/estree/estree). 
 
+Now, we'll see a small overview about how AST becomes and where is used and how to use for our own benefit in the near future.
+
 
 
 
