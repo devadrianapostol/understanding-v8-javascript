@@ -7,7 +7,7 @@ Is the initial step, when the browser receives a bunch of text that we call Java
 
 ### Compilers
 
-After the parsing. The process continue interpreting in different internal steps called compilers. V8 is composed by 3 different compilers, the faster one (Full-gen) that generates non-optimised
+After the parsing. The process continue interpreting in different internal steps called compilers. V8 is composed by 3 different compilers, the faster one (Full-gen) that generates non-optimised and the slow ones that generate optimized code, TurboFan and Crankshaft. Also we will talk about the new Interpreter that wants to replace the current compilers to machine code.
 
 ### Garbage Collector
 
