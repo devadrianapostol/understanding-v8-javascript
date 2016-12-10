@@ -22,8 +22,10 @@
 - Using V8
     - Heap vs Stack
     - Terminal
-    - Debugging
-    - Tracing
+    - Profiling
+      - Metrics
+      - Debugging
+      - Tracing
 - ES Next and V8
 - Native on Web
     - asm.js
@@ -32,7 +34,5 @@
     - Web Asssembly
     - WebAssembly Explorer
 - Future on V8
-- Profiling
-   - Metrics
 - Appendix
     - How to build V8
