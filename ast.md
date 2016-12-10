@@ -8,8 +8,7 @@ Futhermore, how this can be apply to Javascript is what we are going to discover
 
 ### Abstract Syntax Tree and Compilers
 
-
-
+// TODO
 
 ### The history of AST outside of Compilers
 
@@ -17,7 +16,7 @@ Futhermore, how this can be apply to Javascript is what we are going to discover
 
 **AST** is the core of Rhino, and deeply used (forked mostly) Google Closure and YUI Compressor, both use the Java parser internally to analyse, parse and mangle the Javascript code.
 
-Spidermonkey has his own AST implementation and is documented as Parse API, and also it [seems Rhino has his own AST implementation](http://ramkulkarni.com/blog/understanding-ast-created-by-mozilla-rhino-parser/) as well and this changes based on the JS version and those specific javascript engines might change.
+Spidermonkey has his own AST implementation and is documented as Parse API. Futhermore, [Rhino has his own AST implementation](http://ramkulkarni.com/blog/understanding-ast-created-by-mozilla-rhino-parser/) as well and this changes based on the JS version and those specific javascript engines might change.
 
 To solve these inconsistencies, not that far way, it started the confluence of these differences on the ESTree organisation, creating  [the first AST common specification](https://github.com/estree/estree). 
 
