@@ -6,7 +6,7 @@ Abstract syntax trees (AST) are data structures widely used in compilers, due to
 
 Futhermore, how this can be apply to Javascript is what we are going to discover now. But AST is not only used strictly with Javascript environments such Node.js or the Web Browser, everything started on Java world long time ago, with Netscape.
 
-### Abstract Syntax Tree and Compilers
+### AST and Compilers
 
 // TODO
 
