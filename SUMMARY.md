@@ -6,4 +6,5 @@
 * [Parsing](parsing.md)
     * [Abstract Syntax Tree](ast.md)
 * [Compilers](compilers.md)
+* [Inline Caches](inline-caches.md)
 
