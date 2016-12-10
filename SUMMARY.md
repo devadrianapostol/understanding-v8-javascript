@@ -7,4 +7,5 @@
     * [Abstract Syntax Tree](ast.md)
 * [Compilers](compilers.md)
     * [Inline Caches \(ICs\)](inline-caches-ics.md)
+    * [Hidden Classes](hidden-classes.md)
 
