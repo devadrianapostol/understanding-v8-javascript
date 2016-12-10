@@ -11,7 +11,7 @@ Futhermore, how this can be apply to Javascript is what we are going to discover
 
 
 
-### Javascript Compilers and Engines
+### The history of AST outside of Compilers
 
 **Rhino** (javascript engine) was born as part of Nestcape project as Javascript interpreter, then it becomes open source under the hood of **Mozilla**. Rhino is mainly a converter from Javascript to Java classes, but, aside of that it has different uses, like as interpreter, then is when AST becomes important in our story.
 
