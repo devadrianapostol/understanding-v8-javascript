@@ -22,7 +22,7 @@ print(%HaveSameMap(a,b));
 `````
 The result of the following 
 ````bash
->$ d8 --allow_natives_syntax native_syntax.js 
+$> d8 --allow_natives_syntax native_syntax.js 
 true
 false
 ````
