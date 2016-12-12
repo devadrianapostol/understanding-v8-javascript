@@ -2,6 +2,7 @@
 
 * [Introduction](README.md)
 * [Overview](chapter1.md)
+* [Prerequisites](prerequisites.md)
 * [Index](index.md)
 * [Parsing](parsing.md)
     * [Abstract Syntax Tree](ast.md)
