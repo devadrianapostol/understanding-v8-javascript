@@ -1,6 +1,5 @@
 # Brief Content
 
-- [Introduction](/intro.md)
 - [Overview](/chapter1.md)
     - Virtual Machines
     - History of V8
