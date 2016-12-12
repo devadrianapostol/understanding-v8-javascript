@@ -1,14 +1,13 @@
 # Summary
 
 * [Introduction](README.md)
-* [Intro](intro.md)
 * [Index](index.md)
+* [Intro](intro.md)
 * [Overview](chapter1.md)
 * [Prerequisites](prerequisites.md)
 * [Parsing](parsing.md)
     * [Abstract Syntax Tree](ast.md)
-* [Compilers](compilers.md)
+* [Compilers and Interpreter](compilers.md)
     * [Inline Caches \(ICs\)](inline-caches-ics.md)
     * [Hidden Classes](hidden-classes.md)
-* Introduction
 

@@ -11,3 +11,7 @@ As javascript developer you will discover a set of tools to analize deeply your 
 Low level Knowdlege programing language is not needed it to read this book. This book target that audience that wants to understand a hihg level V8 overview.
 
 All the content described in the following pages are based on my own research from a point of view of Javascript Developer.
+
+
+### Disclaimer
+

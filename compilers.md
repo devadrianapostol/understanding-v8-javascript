@@ -1,4 +1,4 @@
-# Compilers and Interpreters
+# Compilers and Interpreter
 
 This chapter describes the 3 compilers, TurboFan, Full-gen, and Crankshaft that compose V8 and the new and the latest interpreter **Ignition**.
 
