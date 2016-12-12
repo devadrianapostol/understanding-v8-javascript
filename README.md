@@ -15,4 +15,4 @@ All the content described in the following pages are based on my own research fr
 
 ### Disclaimer
 
-I'm not V8 contributor and also I'm not a C++ developer. I'm just a Javascript enthusiast that try to explain the usage of V8 from a Web Developer point of view.
+I'm not V8 contributor and also I'm not a C++ developer. I'm just a **javascript developer enthusiast** that try to explain behind the scenes and usage of V8 from a Web Developer point of view.
