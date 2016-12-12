@@ -1,8 +1,7 @@
 # Summary
 
 * [Introduction](README.md)
-* [Index](index.md)
-* [Intro](intro.md)
+* [Brief contents](index.md)
 * [Overview](chapter1.md)
 * [Prerequisites](prerequisites.md)
 * [Parsing](parsing.md)
