@@ -29,7 +29,7 @@ false
 ````
 As you can observe, we have created 2 literal objects, which they should share the same map, but, in the moment we modify the object `a` with the assignment `a.z = 1` V8 creates a new map to fit the new object layout.
 
-In the example of above, `--allow_natives_syntax` arguments allows allow natives syntax within your js file, `%HaveSameMap` is a native C++ method that returns a boolean if two object share the same map (hidden class).
+In the example above, `--allow_natives_syntax` arguments allows allow natives syntax within your js file, `%HaveSameMap` is a native C++ method that returns a boolean if two object share the same map (hidden class).
 
 #### Why we should be aware of this ?
 
