@@ -3,6 +3,14 @@
         "readme": "introduction.md"
     },
     "plugins": [
-        "youtube"
-    ]
+        "youtube",
+        "scripts"
+    ],
+    "pluginsConfig": {
+        "scripts": {
+            "files": [
+                "./gtm-analytics.js"
+            ]
+        }
+    }
 }
