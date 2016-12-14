@@ -1,6 +1,6 @@
 # Summary
 
-* [Introduction](README.md)
+* [Introduction](introduction.md)
 * [Brief contents](brief.md)
 * [Overview](chapter1.md)
 * [Prerequisites](prerequisites.md)
