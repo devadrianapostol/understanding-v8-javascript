@@ -1,4 +1,7 @@
 {
+    "structure": {
+        "readme": "introduction.md"
+    },
     "plugins": [
         "youtube"
     ]
