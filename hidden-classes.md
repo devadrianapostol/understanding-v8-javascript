@@ -42,7 +42,39 @@ In short tha main reason why hidden classes exist:
 
 When the hidden classes changes, or the heuristic of the hidden clases are not longer valid, it happens a **depotimization**.
 
+#### Proving the Hidden Class Deopt
 
+Let's imagine we have the following code:
+
+````javascript
+function Hidden(a, b) {
+  this.a = a;
+  this.b = b;
+}
+
+Hidden.prototype = {
+  fancyFunction : function() { return this.x; }
+}
+
+for(let i = 0; i< 10000; i++) {
+  let h = new Hidden(i, i + 1);
+  if( i > 80 < 90  ) {
+    h.fancyMethod = 4;
+  }
+} 
+````
+As you can see, we have a constructor called `Hidden` and accepts 2 parameters. We iterate Hidden several times but in the middle of the way we do some `monkeypatching` and we add a new property in a couple our `Hidden` instance.
+
+What's gonna happen here? Easy, `V8` is going to create a Hidden class because the object is intensivelly used `hot` optimized such object. 
+
+````bash
+d8 --trace_opt hidden.js  
+[marking 0x705a23d1d81 <JS Function Hidden (SharedFunctionInfo 0x705a23d1a09)> for recompilation, reason: small function, ICs with typeinfo: 2/2 (100%), generic ICs: 0/2 (0%)]
+[didn't find optimized code in optimized code map for 0x705a23d1a09 <SharedFunctionInfo Hidden>]
+[compiling method 0x705a23d1d81 <JS Function Hidden (SharedFunctionInfo 0x705a23d1a09)> using Crankshaft]
+[optimizing 0x705a23d1d81 <JS Function Hidden (SharedFunctionInfo 0x705a23d1a09)> - took 0.045, 0.073, 0.053 ms]
+````
+Let's analise the previous output:
 
 
 
