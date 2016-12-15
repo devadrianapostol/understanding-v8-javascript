@@ -74,9 +74,11 @@ d8 --trace_opt hidden.js
 [compiling method 0x705a23d1d81 <JS Function Hidden (SharedFunctionInfo 0x705a23d1a09)> using Crankshaft]
 [optimizing 0x705a23d1d81 <JS Function Hidden (SharedFunctionInfo 0x705a23d1a09)> - took 0.045, 0.073, 0.053 ms]
 ````
-Let's analise the previous output:
+Let's analise the previous outcome:
 
-
+* `marking 0x705a23d1d81 <JS Function Hidden (SharedFunctionInfo 0x705a23d1a09)>`: v8 marks the `Hidden` object  for recompilation. 
+* `didn't find optimized code in optimized code map`: At this point there isn't any hidden class, but v8 has dettected the object has been used several times.
+* `compiling method 0x705a23d1d81 using Crankshaft`: v8 concludes there isn't a map for this object and uses the **optimized** compiler to create a high performance map for future use caching it.
 
 
 
