@@ -66,7 +66,7 @@ for(let i = 0; i< 100000; i++) {
   }
 } 
 ````
-As you can see, we have a constructor called `Hidden` and accepts 2 parameters. We iterate Hidden several times but in the middle of the way we do some `monkeypatching` and we add a new property in a couple our `Hidden` instance.
+As you can see, we have a constructor called `Hidden` and accepts 2 parameters. We iterate Hidden several times but in the middle of the way we do some `monkeypatching` and we add a new property in a couple our `Hidden` object.
 
 What's gonna happen here? Easy, `V8` is going to create a Hidden class because the object is intensivelly used `hot` optimized such object. 
 
