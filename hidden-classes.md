@@ -87,7 +87,7 @@ Let's analise the previous outcome:
 
 * `marking 0x4c9b3bd1f19 <JS Function Hidden (SharedFunctionInfo 0x4c9b3bd1a89)> reason: small function`: v8 marks the `Hidden` object  for recompilation. 
 * `didn't find optimized code in optimized code map`: At this point there isn't any hidden class, but v8 has dettected the object has been used several times.
-* `compiling method 0x705a23d1d81 using Crankshaft`: v8 concludes there isn't a map for this object and uses the **optimized** compiler to create a high performance map for future use caching it.
+* `compiling method 0x4c9b3bd1a89 using Crankshaft`: v8 concludes there isn't a map for this object and uses the **optimized** compiler to create a high performance map for future use caching it.
 
 At this point V8 is has been smart enough to detect our object is being instanciated several times, but, after the 8000 until 8999 instance we made a nasty `monkeypatching` in some of our instances. Then it happens a **depotimization**.
 
