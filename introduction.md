@@ -2,6 +2,8 @@
 
 Written by [@jotadeveloper](https://twitter.com/jotadeveloper)
 
+**Note**: **This book is in constant development, the content may change and unfilled chapters will appear periodically.**
+
 The V8 JavaScript Engine is an open source JavaScript engine developed by The Chromium Project for the Google Chrome web browser.  It's used in other projects Node.js in the server side.
 
 I deeply believe the understanding behind the scenes of a Javascript engine helps a lot to code much better and performance code and it will help you to analyze and profile bottlenecks.
