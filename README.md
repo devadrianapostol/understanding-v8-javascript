@@ -12,7 +12,7 @@ In this book we will go through all elements that compose the V8 Javascript engi
 
 As javascript developer you will discover a set of tools to analyse deeply your code, analyse and improve it. 
 
-Low level knowledge programming language is not needed it to read this book. This book target that audience that wants to understand a hihg level V8 overview.
+Low level knowledge programming language is not needed it to read this book. This book target that audience that wants to understand a high level V8 overview.
 
 ### Disclaimer
 
