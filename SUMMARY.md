@@ -9,4 +9,5 @@
 * [Compilers and Interpreter](compilers.md)
     * [Hidden Classes](hidden-classes.md)
         * [Inline Caches \(ICs\)](inline-caches-ics.md)
+    * [Crankshaft](crankshaft.md)
 
