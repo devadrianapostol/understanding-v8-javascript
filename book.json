@@ -1,7 +1,5 @@
 {
-    "structure": {
-        "readme": "introduction.md"
-    },
+    "root": "./book",
     "plugins": [
         "youtube",
         "scripts"

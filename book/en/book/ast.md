@@ -32,7 +32,7 @@ The static analysis has multiple benefits, like for instance:
 The static analysis has multiple benefits, like [replace double quotes by single quotes](http://ariya.ofilabs.com/2012/02/from-double-quotes-to-single-quotes.html) or [display the coverage](https://github.com/gotwarlost/istanbul#api) of your javascript files based on your unit test.
 
 
-![](/assets/ast.png)
+![](../assets/ast.png)
 
 Let’s analyse a basic example:
 
@@ -196,7 +196,7 @@ var js = escodegen.generate({
 
 It takes an Esprima syntax tree and returns the analyzed scopes. It allows us, eg: go to an specific scope and do some transformations, detect all variables in the scipe and their references to other parts of the code, detect child scopes, get function parameters, etc etc.
 
-![](/assets/Screen-Shot-2016-03-20-at-18.21.33.png)
+![](../assets/escope.png)
 
 You can practice in this [demo page.](http://mazurov.github.io/escope-demo/)
 
