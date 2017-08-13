@@ -30,5 +30,7 @@ true
 false
 ```
 
-Como puedes observar, hemos creado dos objetos literales.
+Como puedes observar, hemos creado dos objetos literales, los cuales comparte el mismo mapa, pero, en el momento donde nosotros modificamos el objecto `a` con la asignación `a.z = 1` V8 crea un nuevo mapa para adaptarse a la nueva disposición del objeto.
+
+ En el ejemplo anterior, el argumento `--allow_natives_syntax`  permite sintaxis nativa dentro de tu script de Javascript, `%HaveSameMap` es un método nativo de **C++ **que retorna un _booleano _si dos objetos comparten el mismo mapa \(hidden class\).** **
 
