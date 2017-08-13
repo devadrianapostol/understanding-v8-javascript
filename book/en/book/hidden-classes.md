@@ -6,9 +6,9 @@ Is the internal notion of types of V8, the JS engine uses then in order to creat
 
 It's a **group of objects with the same structure**, as you adding properties to objects, V8 will be looking at on each object and map that bundle of properties to a hidden class which defines an object with exactly these properties.
 
-Let's see the following example, we have 2 literal objects, `a` and `b`. 
+Let's see the following example, we have 2 literal objects, `a` and `b`.
 
-`````javascript
+```javascript
 var a = {};
 a.x = 8;
 a.y = 8;
@@ -20,25 +20,28 @@ b.y = 9;
 print(%HaveSameMap(a,b));
 a.z = 1;
 print(%HaveSameMap(a,b));
-`````
-The result of the following 
-````bash
+```
+
+The result of the following
+
+```bash
 $> d8 --allow_natives_syntax native_syntax.js 
 true
 false
-````
+```
+
 As you can observe, we have created 2 literal objects, which they should share the same map, but, in the moment we modify the object `a` with the assignment `a.z = 1` V8 creates a new map to fit the new object layout.
 
-In the example above, `--allow_natives_syntax` arguments allows allow natives syntax within your js file, `%HaveSameMap` is a native C++ method that returns a boolean if two object share the same map (hidden class).
+In the example above, `--allow_natives_syntax` arguments allows natives syntax within your js file, `%HaveSameMap` is a native C++ method that returns a boolean if two object share the same map \(hidden class\).
 
 #### Why we should be aware of this ?
 
-This is really important, a **Object’s hidden class changes as new properties are being added to it**. Javascript is dynamically-typed laguage that makes things really complicated for the Javascript Engine, the code is not compiled in advanced like Java or C++ and it's compiled in executionn time (JIT) and **the purpose of the hidden classes is to optimize property access time**.
+This is really important, a **Object’s hidden class changes as new properties are being added to it**. Javascript is dynamically-typed laguage that makes things really complicated for the Javascript Engine, the code is not compiled in advanced like Java or C++ and it's compiled in executionn time \(JIT\) and **the purpose of the hidden classes is to optimize property access time**.
 
 In short tha main reason why hidden classes exist:
 
-- No types in Javascript
-- Compilation is part of the execution time
+* No types in Javascript
+* Compilation is part of the execution time
 
 When the hidden classes changes, or the heuristic of the hidden clases are not longer valid, it happens a **depotimization**.
 
@@ -46,7 +49,7 @@ When the hidden classes changes, or the heuristic of the hidden clases are not l
 
 Let's imagine we have the following code:
 
-````javascript
+```javascript
 function Hidden(a, b) {
   this.a = a;
   this.b = b;
@@ -64,13 +67,14 @@ for(let i = 0; i< 100000; i++) {
       Hidden.prototype.deoptMethod = function(){}
     }
   }
-} 
-````
+}
+```
+
 As you can see, we have a constructor called `Hidden` and accepts 2 parameters. We iterate Hidden several times but in the middle of the way we do some `monkeypatching` and we add a new property in a couple our `Hidden` object.
 
-What's gonna happen here? Easy, `V8` is going to create a Hidden class because the object is intensivelly used `hot` optimized such object. 
+What's gonna happen here? Easy, `V8` is going to create a Hidden class because the object is intensivelly used `hot` optimized such object.
 
-````bash
+```bash
 d8 --trace_opt hidden.js  
 [marking 0x4c9b3bd1f19 <JS Function Hidden (SharedFunctionInfo 0x4c9b3bd1a89)> for recompilation, reason: small function, ICs with typeinfo: 2/2 (100%), generic ICs: 0/2 (0%)]
 [didn't find optimized code in optimized code map for 0x4c9b3bd1a89 <SharedFunctionInfo Hidden>]
@@ -82,7 +86,8 @@ d8 --trace_opt hidden.js
 [didn't find optimized code in optimized code map for 0x4c9b3bd18c1 <SharedFunctionInfo>]
 [compiling method 0x4c9b3bd1e61 <JS Function (SharedFunctionInfo 0x4c9b3bd18c1)> using Crankshaft OSR]
 [optimizing 0x4c9b3bd1e61 <JS Function (SharedFunctionInfo 0x4c9b3bd18c1)> - took 0.201, 0.423, 0.096 ms]
-````
+```
+
 Let's analise the previous outcome:
 
 * `marking 0x4c9b3bd1f19 <JS Function Hidden (SharedFunctionInfo 0x4c9b3bd1a89)> reason: small function`: v8 marks the `Hidden` object  for recompilation. 
@@ -91,7 +96,7 @@ Let's analise the previous outcome:
 
 At this point V8 is has been smart enough to detect our object is being instanciated several times, but, after the 8000 until 8999 instance we made a nasty `monkeypatching` in some of our instances. Then it happens a **depotimization**.
 
-````bash
+```bash
 [deoptimizing (DEOPT soft): begin 0x4c9b3bd1e61 <JS Function (SharedFunctionInfo 0x4c9b3bd18c1)> (opt #1) @10, FP to SP delta: 88, caller sp: 0x7fff51adece0]
             ;;; deoptimize at 208: Insufficient type feedback for combined type of binary operation
   reading input frame  => node=262, args=1, height=8; inputs:
@@ -137,9 +142,7 @@ trigger deopt
 [didn't find optimized code in optimized code map for 0x4c9b3bd18c1 <SharedFunctionInfo>]
 [compiling method 0x4c9b3bd1e61 <JS Function (SharedFunctionInfo 0x4c9b3bd18c1)> using Crankshaft OSR]
 [optimizing 0x4c9b3bd1e61 <JS Function (SharedFunctionInfo 0x4c9b3bd18c1)> - took 0.095, 0.305, 0.061 ms]
-````
-
-
+```
 
 
 
