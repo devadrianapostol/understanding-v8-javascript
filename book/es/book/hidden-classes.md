@@ -73,17 +73,31 @@ for(let i = 0; i< 100000; i++) {
 Como puedes observar, tenemos una clase llamado `Hidden`y que tiene 2 parámetros. En el ejemplo estamos iterando `Hidden` varias veces pero en medio del proceso hacemos algo de `monkeypatching` y agregamos un par de propiedades a nuestra instancia del objeto `Hidden`.
 
 ```bash
-d8 --trace_opt hidden.js  
-[marking 0x4c9b3bd1f19 <JS Function Hidden (SharedFunctionInfo 0x4c9b3bd1a89)> for recompilation, reason: small function, ICs with typeinfo: 2/2 (100%), generic ICs: 0/2 (0%)]
-[didn't find optimized code in optimized code map for 0x4c9b3bd1a89 <SharedFunctionInfo Hidden>]
-[compiling method 0x4c9b3bd1f19 <JS Function Hidden (SharedFunctionInfo 0x4c9b3bd1a89)> using Crankshaft]
-[optimizing 0x4c9b3bd1f19 <JS Function Hidden (SharedFunctionInfo 0x4c9b3bd1a89)> - took 0.039, 0.113, 0.069 ms]
-[didn't find optimized code in optimized code map for 0x4c9b3bd1a89 <SharedFunctionInfo Hidden>]
-[completed optimizing 0x4c9b3bd1f19 <JS Function Hidden (SharedFunctionInfo 0x4c9b3bd1a89)>]
-[marking 0x4c9b3bd1e61 <JS Function (SharedFunctionInfo 0x4c9b3bd18c1)> for recompilation, reason: hot and stable, ICs with typeinfo: 7/20 (35%), generic ICs: 0/20 (0%)]
-[didn't find optimized code in optimized code map for 0x4c9b3bd18c1 <SharedFunctionInfo>]
-[compiling method 0x4c9b3bd1e61 <JS Function (SharedFunctionInfo 0x4c9b3bd18c1)> using Crankshaft OSR]
-[optimizing 0x4c9b3bd1e61 <JS Function (SharedFunctionInfo 0x4c9b3bd18c1)> - took 0.201, 0.423, 0.096 ms]
+➜ d8 --trace_opt hidden.js 
+[marking 0x21c6d66d1f19 <JS Function Hidden (SharedFunctionInfo 0x21c6d66d1a89)> for recompilation, reason: small function, ICs with typeinfo: 2/2 (100%), generic ICs: 0/2 (0%)]
+[didn't find optimized code in optimized code map for 0x21c6d66d1a89 <SharedFunctionInfo Hidden>]
+[compiling method 0x21c6d66d1f19 <JS Function Hidden (SharedFunctionInfo 0x21c6d66d1a89)> using Crankshaft]
+[optimizing 0x21c6d66d1f19 <JS Function Hidden (SharedFunctionInfo 0x21c6d66d1a89)> - took 0.386, 0.058, 0.072 ms]
+[didn't find optimized code in optimized code map for 0x21c6d66d1a89 <SharedFunctionInfo Hidden>]
+[completed optimizing 0x21c6d66d1f19 <JS Function Hidden (SharedFunctionInfo 0x21c6d66d1a89)>]
+[marking 0x21c6d66d1e61 <JS Function (SharedFunctionInfo 0x21c6d66d18c1)> for recompilation, reason: hot and stable, ICs with typeinfo: 7/20 (35%), generic ICs: 0/20 (0%)]
+[didn't find optimized code in optimized code map for 0x21c6d66d18c1 <SharedFunctionInfo>]
+[compiling method 0x21c6d66d1e61 <JS Function (SharedFunctionInfo 0x21c6d66d18c1)> using Crankshaft OSR]
+[optimizing 0x21c6d66d1e61 <JS Function (SharedFunctionInfo 0x21c6d66d18c1)> - took 0.243, 0.383, 0.102 ms]
+[evicting entry from optimizing code map (notify deoptimized) for 0x21c6d66d18c1 <SharedFunctionInfo> (osr ast id 90)]
+trigger deopt
+[evicting entry from optimizing code map (deoptimized code) for 0x21c6d66d1a89 <SharedFunctionInfo Hidden>]
+[marking 0x21c6d66d1f19 <JS Function Hidden (SharedFunctionInfo 0x21c6d66d1a89)> for recompilation, reason: small function, ICs with typeinfo: 2/2 (100%), generic ICs: 0/2 (0%)]
+[didn't find optimized code in optimized code map for 0x21c6d66d1a89 <SharedFunctionInfo Hidden>]
+[compiling method 0x21c6d66d1f19 <JS Function Hidden (SharedFunctionInfo 0x21c6d66d1a89)> using Crankshaft]
+[optimizing 0x21c6d66d1f19 <JS Function Hidden (SharedFunctionInfo 0x21c6d66d1a89)> - took 0.015, 0.071, 0.034 ms]
+[didn't find optimized code in optimized code map for 0x21c6d66d1a89 <SharedFunctionInfo Hidden>]
+[completed optimizing 0x21c6d66d1f19 <JS Function Hidden (SharedFunctionInfo 0x21c6d66d1a89)>]
+[marking 0x21c6d66d1e61 <JS Function (SharedFunctionInfo 0x21c6d66d18c1)> for recompilation, reason: hot and stable, ICs with typeinfo: 12/20 (60%), generic ICs: 0/20 (0%)]
+[didn't find optimized code in optimized code map for 0x21c6d66d18c1 <SharedFunctionInfo>]
+[compiling method 0x21c6d66d1e61 <JS Function (SharedFunctionInfo 0x21c6d66d18c1)> using Crankshaft OSR]
+[optimizing 0x21c6d66d1e61 <JS Function (SharedFunctionInfo 0x21c6d66d18c1)> - took 0.145, 0.336, 0.062 ms]
+
 ```
 
 
