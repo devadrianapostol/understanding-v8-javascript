@@ -84,6 +84,17 @@ Como puedes observar, tenemos una clase llamado `Hidden`y que tiene 2 parámetro
 [didn't find optimized code in optimized code map for 0x21c6d66d18c1 <SharedFunctionInfo>]
 [compiling method 0x21c6d66d1e61 <JS Function (SharedFunctionInfo 0x21c6d66d18c1)> using Crankshaft OSR]
 [optimizing 0x21c6d66d1e61 <JS Function (SharedFunctionInfo 0x21c6d66d18c1)> - took 0.243, 0.383, 0.102 ms]
+```
+
+Analicemos lo anterior paso por paso:
+
+* `marking 0x4c9b3bd1f19 <JS Function Hidden (SharedFunctionInfo 0x4c9b3bd1a89)> reason: small function`: v8 marca el objecto `Hidden` para recompilación. 
+* `didn't find optimized code in optimized code map`: En este punto no hay ninguna "hidden class aún, pero V8 ha detectado que un objeto ha sido usado varias veces.
+* `compiling method 0x705a23d1d81 using Crankshaft`: v8 concluye que no existe un mapa para este obejcto, asi que hace uso del compilador avanzado para crear un mapa de alto performance para usarlo como caché en el futuro.
+
+Hasta este punto, V8 ha sido lo suficientemente inteligente para instanciar un objecto mucas veces, pero después de la iteración 8000 hasta la 8999 hemos echo un `monkeypatching` en algunas de sus instancias. Entonces es cuando pasa la **deoptimización**.
+
+```
 [evicting entry from optimizing code map (notify deoptimized) for 0x21c6d66d18c1 <SharedFunctionInfo> (osr ast id 90)]
 trigger deopt
 [evicting entry from optimizing code map (deoptimized code) for 0x21c6d66d1a89 <SharedFunctionInfo Hidden>]
@@ -97,7 +108,6 @@ trigger deopt
 [didn't find optimized code in optimized code map for 0x21c6d66d18c1 <SharedFunctionInfo>]
 [compiling method 0x21c6d66d1e61 <JS Function (SharedFunctionInfo 0x21c6d66d18c1)> using Crankshaft OSR]
 [optimizing 0x21c6d66d1e61 <JS Function (SharedFunctionInfo 0x21c6d66d18c1)> - took 0.145, 0.336, 0.062 ms]
-
 ```
 
 
