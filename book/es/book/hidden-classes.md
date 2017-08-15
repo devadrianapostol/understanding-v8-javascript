@@ -88,7 +88,7 @@ Como puedes observar, tenemos una clase llamado `Hidden`y que tiene 2 parámetro
 
 Analicemos lo anterior paso por paso:
 
-* `marking 0x4c9b3bd1f19 <JS Function Hidden (SharedFunctionInfo 0x4c9b3bd1a89)> reason: small function`: v8 marca el objecto `Hidden` para recompilación. 
+* `marking 0x4c9b3bd1f19 <JS Function Hidden (SharedFunctionInfo 0x4c9b3bd1a89)> reason: small function`: v8 marca el objeto `Hidden` para recompilación. 
 * `didn't find optimized code in optimized code map`: En este punto no hay ninguna "hidden class aún, pero V8 ha detectado que un objeto ha sido usado varias veces.
 * `compiling method 0x705a23d1d81 using Crankshaft`: v8 concluye que no existe un mapa para este obejcto, asi que hace uso del compilador avanzado para crear un mapa de alto performance para usarlo como caché en el futuro.
 
