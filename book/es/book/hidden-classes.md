@@ -32,5 +32,11 @@ false
 
 Como puedes observar, hemos creado dos objetos literales, los cuales comparte el mismo mapa, pero, en el momento donde nosotros modificamos el objecto `a` con la asignación `a.z = 1` V8 crea un nuevo mapa para adaptarse a la nueva disposición del objeto.
 
- En el ejemplo anterior, el argumento `--allow_natives_syntax`  permite sintaxis nativa dentro de tu script de Javascript, `%HaveSameMap` es un método nativo de **C++ **que retorna un _booleano _si dos objetos comparten el mismo mapa \(hidden class\).** **
+En el ejemplo anterior, el argumento `--allow_natives_syntax`  permite sintaxis nativa dentro de tu script de Javascript, `%HaveSameMap` es un método nativo de **C++ **que retorna un \_booleano \_si dos objetos comparten el mismo mapa \(hidden class\).** **
+
+##### Porque deberiamos ser consciente de esto?
+
+Lo que es realmente importante es, un **hidden class de un objecto cambia según nuevas propiedades se van asignando. **Javascript es un lenguaje dinamicamente tipado y hace las cosas realmente complicadas para el motor de Javascript, el codigo no es compilado como en Java o C++, es compilado en tiempo de ejecución \(JIT\) y el **propósito de las las hidden classes es optimizar el tiempo acceso a la propiedad.**
+
+
 
