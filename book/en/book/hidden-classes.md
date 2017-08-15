@@ -36,7 +36,7 @@ In the example above, `--allow_natives_syntax` arguments allows natives syntax w
 
 #### Why we should be aware of this ?
 
-This is really important, a **Object’s hidden class changes as new properties are being added to it**. Javascript is dynamically-typed laguage that makes things really complicated for the Javascript Engine, the code is not compiled in advanced like Java or C++ and it's compiled in executionn time \(JIT\) and **the purpose of the hidden classes is to optimize property access time**.
+This is really important, a **Object’s hidden class changes as new properties are being added to it**. Javascript is dynamically-typed laguage that makes things really complicated for the Javascript Engine, the code is not compiled in advanced like Java or C++ and it's compiled in execution time \(JIT\) and **the purpose of the hidden classes is to optimize property access time**.
 
 In short tha main reason why hidden classes exist:
 
