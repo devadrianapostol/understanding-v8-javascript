@@ -45,7 +45,32 @@ En otras palabras, la razón porque una "hidden class" existe es:
 
 Cuando las "hidden classes" cambian o la heurística de la "hidden class" ya no es validad, sucede una **deoptimización.**
 
+#### Probando una deoptimización \(deopt\)
 
+Vamos a imaginar que tenemos el siguiente código:
+
+```js
+function Hidden(a, b) {
+  this.a = a;
+  this.b = b;
+}
+
+Hidden.prototype = {
+  fancyFunction : function() { return this.x; }
+}
+
+for(let i = 0; i< 100000; i++) {
+  let h = new Hidden(i, i);
+  if( i > 8000 && i < 9000  ) {     
+    if (!Hidden.prototype.deoptMethod) {
+      print('trigger deopt');   
+      Hidden.prototype.deoptMethod = function(){}
+    }
+  }
+}
+```
+
+Como puedes observar, tenemos una clase llamado `Hidden`y que tiene 2 parámetros. En el ejemplo estamos iterando `Hidden` varias veces pero en medio del proceso hacemos algo de `monkeypatching` y agregamos un par de propiedades a nuestra instancia del objeto `Hidden`.
 
 
 
