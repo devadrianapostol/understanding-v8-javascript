@@ -36,7 +36,16 @@ En el ejemplo anterior, el argumento `--allow_natives_syntax`  permite sintaxis 
 
 ##### Porque deberiamos ser consciente de esto?
 
-Lo que es realmente importante es, un **hidden class de un objecto cambia según nuevas propiedades se van asignando. **Javascript es un lenguaje dinamicamente tipado y hace las cosas realmente complicadas para el motor de Javascript, el codigo no es compilado como en Java o C++, es compilado en tiempo de ejecución \(JIT\) y el **propósito de las las hidden classes es optimizar el tiempo acceso a la propiedad.**
+Lo que es realmente importante es, un "**hidden class" de un objecto cambia según nuevas propiedades se van asignando. **Javascript es un lenguaje dinamicamente tipado y hace las cosas realmente complicadas para el motor de Javascript, el codigo no es compilado como en Java o C++, es compilado en tiempo de ejecución \(JIT\) y el **propósito de las las hidden classes es optimizar el tiempo acceso a la propiedad.**
+
+En otras palabras, la razón porque una "hidden class" existe es:
+
+* No existen tipos en Javascript
+* El tiempo de compilación es en tiempo de ejecución
+
+Cuando las "hidden classes" cambian o la heurística de la "hidden class" ya no es validad, sucede una **deoptimización.**
+
+
 
 
 
