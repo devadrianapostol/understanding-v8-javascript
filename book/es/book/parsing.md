@@ -1,6 +1,6 @@
 # Analizador \(Parser\)
 
-Es el paso inicial donde el el explorador recibe un puñado de texto que nostros llamamos Javascript, pero para el es solo texto sin sentido. En esta seción vamos a analizar los primeros pasos de un largo proceso. 
+Es el paso inicial donde el el explorador recibe un puñado de texto que nostros llamamos Javascript, pero para el es solo texto sin sentido. En esta seción vamos a analizar los primeros pasos de un largo proceso.
 
 ### Tokenizer
 
@@ -8,7 +8,7 @@ Es el proceso donde V8 separa el Tokens donde el motor convertira posteriormente
 
 ### Parseo Básico
 
-V8 no ofrece un API externo para imprimir AST, pero si **spidermonkey**, en el siguiente ejemplo
+V8 no ofrece un API externo para imprimir AST, pero si **spidermonkey**, en el siguiente ejemplo,
 
 ```
 function parser(x,y) { 
