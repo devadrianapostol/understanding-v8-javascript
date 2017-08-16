@@ -4,7 +4,7 @@ Es el paso inicial donde el el explorador recibe un puñado de texto que nostros
 
 ### Tokenizer
 
-Es el proceso donde V8 separa el Tokens el código fuente
+Es el proceso donde V8 separa el Tokens donde el motor convertira posteriormente a Sintaxis Abstracta o AST. ![](/assets/tokens_v8.png)Como puedes observar internamente todos los Token están registrados de acuerdo  a la [especificación](https://www.ecma-international.org/ecma-262/8.0/index.html#sec-punctuators) ECMASCRIPT-262. Eso hace que el tokenizador entienda el código que esta tratando de parsear.
 
 ### Parseo Básico
 
@@ -16,7 +16,7 @@ function parser(x,y) {
 }
 ```
 
- Ahora vamos hacer uso del Parser API para mostrar cual seria el resultado de una simple declaración anterior:
+Ahora vamos hacer uso del Parser API para mostrar cual seria el resultado de una simple declaración anterior:
 
 ```
 js> Reflect.parse("function parser(x,y) { return x + y }");
@@ -47,6 +47,4 @@ type:"Literal", value:4}}]}]})
 ```
 
 Como puedes observar el resultado de una simple expresión denota en una gran cantidad de datos con un significado especifico.
-
-
 
