@@ -4,7 +4,7 @@ Es el paso inicial donde el el explorador recibe un puñado de texto que nostros
 
 ### Tokenizer
 
-Es el proceso donde V8 separa el Tokens donde el motor convertira posteriormente a Sintaxis Abstracta o AST. ![](/assets/tokens_v8.png)Como puedes observar internamente todos los Token están registrados de acuerdo  a la [especificación](https://www.ecma-international.org/ecma-262/8.0/index.html#sec-punctuators) ECMASCRIPT-262. Eso hace que el tokenizador entienda el código que esta tratando de parsear.
+Es el proceso donde V8 separa el Tokens donde el motor convertira posteriormente a Sintaxis Abstracta o AST. ![](/book/assets/tokens_v8.png)Como puedes observar internamente todos los Token están registrados de acuerdo  a la [especificación](https://www.ecma-international.org/ecma-262/8.0/index.html#sec-punctuators) ECMASCRIPT-262. Eso hace que el tokenizador entienda el código que esta tratando de parsear.
 
 ### Parseo Básico
 
