@@ -1,18 +1,30 @@
 # Analizador \(Parser\)
 
-Es el paso inicial donde el el explorador recibe un puñado de texto que nostros llamamos Javascript, pero para el es solo texto sin sentido. En esta seción vamos a analizar los primeros pasos de un largo proceso.
 
-### Tokenizer
 
-Es el proceso donde V8 separa el Tokens donde el motor convertira posteriormente a Sintaxis Abstracta o AST.
+El Analizador \(Parser\) es el proceso donde V8 separa en **tokens** el texto donde el motor convertira posteriormente a Sintaxis Abstracta o AST. 
 
- ![](../assets/tokens_v8.png)
+### Analizador léxico \(Scaner\)
 
-Como puedes observar internamente todos los Token están registrados de acuerdo  a la [especificación](https://www.ecma-international.org/ecma-262/8.0/index.html#sec-punctuators) ECMASCRIPT-262. Eso hace que el tokenizador entienda el código que esta tratando de parsear.
+El analizador léxico o escaner es el primer paso del proceso donde el compilador convierte el código fuente en un programa. Son bloques de construcción de un programa, pequeños fragmentos como variables, punto y coma, parentesis, signos de puntuación y palabras clave.
 
-### Parseo Básico
+![](../assets/tokens_v8.png)
 
-V8 no ofrece un API externo para imprimir AST, pero si **spidermonkey**, en el siguiente ejemplo,
+En la imagen anterior se muestran una série de tokens, todos estas palabras estan definidas en el parseador tal como describe la especificación de Javascript. Un token es también llamado componente léxico que tiene un significado coherente. Un ejemplo seria los Puntuadores \(Puntuactors\) como se aprecia en la imagen anterior.
+
+> tokens are the reserved words, identifiers, literals, and punctuators of the ECMAScript language
+
+Según la especificación un token son: palabras reservadas `await, break, return`, [identificadores](https://mathias.html5.org/tests/javascript/identifiers/symbols.js) `$, _`, literales `null, true, false, 1, 2, 3`, y puntuadores `== != === !===`.
+
+Veámos un ejemplo, en Javascript existen muchas [palabras clave](https://mathiasbynens.be/notes/reserved-keywords), el tokenizador 
+
+### Analizador Sintáctico \(Parser\)
+
+El analizador sintáctico es un proceso completamente transparente para el desarrollador, pero no por eso debemos ignorar este paso, hoy en dia es una herramienta muy util que usamos en herramientas como `eslint`. 
+
+#### SpiderMonkey Parser API
+
+Desafortunadamente **V8** no ofrece un API externo para imprimir AST, pero **spidermonkey **sí nos ofrece un API que podemos usar en modo de demostración. En el siguiente ejemplo vamos a mostrar el arbol sintactico generado por el parseador.
 
 ```
 function parser(x,y) { 
@@ -20,7 +32,7 @@ function parser(x,y) {
 }
 ```
 
-Ahora vamos hacer uso del Parser API para mostrar cual seria el resultado de una simple declaración anterior:
+Desde la terminal hacémos uso del la funcion `Reflect.parse("foo")` donde el unico argumento que acepta el código que deseamos analizar y retorna un grupo de objectos que representan cada nodo del Arbol Sintáctico.
 
 ```
 js> Reflect.parse("function parser(x,y) { return x + y }");
@@ -50,5 +62,5 @@ type:"Identifier", name:"a"}, init:{loc:{start:{line:1, column:10}, end:{line:1,
 type:"Literal", value:4}}]}]})
 ```
 
-Como puedes observar el resultado de una simple expresión denota en una gran cantidad de datos con un significado especifico.
+
 
