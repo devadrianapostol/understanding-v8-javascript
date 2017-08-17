@@ -67,7 +67,7 @@ V8  trabaja con 2 tipos de parseo:
 * Parser completo \(Full parsing\)
 * Lazy Parser o Parseo Diferido
 
-Analicemos el siguiente código fuente usando el argumento `--trace_parse` disponible con el comando `v8` o `d8` . 
+Analicemos el siguiente código fuente usando el argumento `--trace_parse` disponible con el comando `v8` o `d8` .
 
 ```
 function innerFunction(message) {
@@ -137,7 +137,5 @@ snippets/ch1/parser
 Now I say Hello I am the full parsed function !!!
 ```
 
-La ejecución total ha sido de `0.042 ms` , `0.0.12ms`mas rápida que en el parseo completo, esto  ahorra un trabajo incesario al compilador ya que la función jamas fué ejecutada en ningún contexto, ese proceso se le llama **Pre-parsing **o parseo diferido, haciendo lo anterior el parseo puede llegar a ser x2 veces mas rápido que ejecutando un parseo completo.
-
-
+La ejecución total ha sido de `0.042 ms` , `0.0.12ms`mas rápida que en el parseo completo, esto  ahorra un trabajo incesario al compilador ya que la función jamas fué ejecutada en ningún contexto, ese proceso se le llama **Pre-parsing **o parseo diferido. Esto hace que ell parseo puede llegue a ser x2 veces mas rápido que ejecutando un parseo completo.
 
