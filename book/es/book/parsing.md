@@ -92,13 +92,13 @@ function preParsedFunction(a, b) {
 print(fullParsed("I am the full parsed function"));
 ```
 
-Tengamos en cuenta que tenemos 3 métodos declarados, `innerFunction` , `fullParsed` y `preParsedFunction`. 
+Tengamos en cuenta que tenemos 3 métodos declarados, `innerFunction` , `fullParsed` y `preParsedFunction`.
 
 Parsear el código toma tiempo, asi que los motores de Javacript tratan de evitar un parseo completo, en las siguientes secciones vamos analizar detalladamente algunos de los posibles escenarios más comunes.
 
 #### Parser completo \(Full parsing\)
 
-En el ejemplo anterior haremos uso de todas las funciones declaradas y veremos cual es el resultado.
+Un parseo completo es cuando el compilador se ve forzado a parsear todas las sentencias encontradas en el script. En el ejemplo anterior haremos uso de todas las funciones declaradas y veremos cual es el resultado.
 
 ```
 v8 parser.js --trace_parse
@@ -131,9 +131,13 @@ Now I say Hello I am the full parsed function !!!
 
 He querido mostrar todo la salida por motivos prácticos, pero ignoremos las primeras lineas y enfoquemonos en las últimas 3. Hemos forzado al compilador a parsear todo nuestro codigo y el tiempo de ejecución fue de `0.061 ms` .
 
-#### Parseo Diferido o Lazy Parser
+#### Pre-parseo o Pre-Parser
 
-Para demosrtar el parseo diferido, simplemente comentaremos la linea 6 para evitar la ejecucion del método `preParsedFunction();` y así el parseador evitara parsear el contenido interno de dicha función, difiriendo el análisis de su contenido cuando el compilador lo necesite.
+Es muy probable que no todas las funciones en Javascript sean ejecutadas, o sean ejecutadas mas adelante por algun evento. 
+
+> El pre-parseo detecta errores de sintáxis, pero no resuelve el ámbito de las variables usadas en la función o generar AST .
+
+Para demostar el pre-parseo, simplemente comentaremos la linea 6 `preParsedFunction(2, 5);`  y así el compilador pre-parseara según se espera difiriendo el análisis de su contenido cuando el compilador lo necesite.
 
 ```
 snippets/ch1/parser 
@@ -145,5 +149,5 @@ snippets/ch1/parser
 Now I say Hello I am the full parsed function !!!
 ```
 
-La ejecución total ha sido de `0.056 ms` , `0.05ms`mas rápida que en el parseo completo, el método `preParsedFunction` ha sido pre-parseado, haciendo el parseo inicial mas rápido. Ese proceso se le llama **Lazy Parser **o parseo diferido. Esto hace que ell parseo puede llegue a ser x2 veces mas rápido que ejecutando un parseo completo.
+La ejecución total ha sido de `0.056 ms` , `0.05ms`mas rápida que en el parseo completo, haciendo el parseo inicial mas rápido. Ese proceso se le llama **Pre-Parser **o pre-parseo. Esto hace que puede lleguar a ser hasta x2 veces mas rápido que ejecutando un parseo completo.
 
