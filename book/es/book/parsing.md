@@ -62,7 +62,7 @@ type:"Literal", value:4}}]}]})
 
 ### Tipos de Parsing
 
-V8  trabaja con 2 tipos de parseo:
+ V8 es capaz de aplicar 2 tipos de análisis sintáctico al código fuente
 
 * Parser completo \(Full parsing\)
 * Lazy Parser o Parseo Diferido
@@ -71,16 +71,22 @@ Analicemos el siguiente código fuente usando el argumento `--trace_parse` dispo
 
 ```
 function innerFunction(message) {
-    return "Now I say " + message + " !!!";
+	return "Now I say " + message + " !!!";
 }
 
 function fullParsed(message) {
-    preParsedFunction();
-    return innerFunction("Hello " + message);
+	preParsedFunction(2, 5);
+	return innerFunction("Hello " + message);
 }
 
-function preParsedFunction() {
-    print("preParsedFunction");
+function preParsedFunction(a, b) {
+	var length = 10;
+	var update = [];
+	for (var index = 0; index < length; index++) {
+		update.push(a * b);
+	}
+	print("preParsedFunction");
+	return update;
 }
 
 print(fullParsed("I am the full parsed function"));
@@ -94,36 +100,36 @@ En el ejemplo anterior haremos uso de todas las funciones declaradas y veremos c
 
 ```
 v8 parser.js --trace_parse
-[parsing script: native harmony-regexp-exec.js - took 1.198 ms]
-[parsing function: ImportNow - took 0.514 ms]
-[parsing function: OverrideFunction - took 0.068 ms]
-[parsing function: SetFunctionName - took 0.067 ms]
-[parsing script: native harmony-species.js - took 0.136 ms]
-[parsing function: get __proto__ - took 0.027 ms]
-[parsing function: InstallGetter - took 0.056 ms]
-[parsing script: native harmony-unicode-regexps.js - took 0.086 ms]
-[parsing function: Import - took 0.018 ms]
-[parsing script: native promise-extra.js - took 0.044 ms]
-[parsing function: InstallFunctions - took 0.070 ms]
-[parsing function: PostExperimentals - took 0.079 ms]
-[parsing function:  - took 0.081 ms]
-[parsing function:  - took 0.019 ms]
+[parsing script: native harmony-regexp-exec.js - took 0.328 ms]
+[parsing function: ImportNow - took 0.050 ms]
+[parsing function: OverrideFunction - took 0.050 ms]
+[parsing function: SetFunctionName - took 0.060 ms]
+[parsing script: native harmony-species.js - took 0.110 ms]
+[parsing function: get __proto__ - took 0.019 ms]
+[parsing function: InstallGetter - took 0.059 ms]
+[parsing script: native harmony-unicode-regexps.js - took 0.069 ms]
+[parsing function: Import - took 0.016 ms]
+[parsing script: native promise-extra.js - took 0.039 ms]
+[parsing function: InstallFunctions - took 0.053 ms]
+[parsing function: PostExperimentals - took 0.045 ms]
 [parsing function:  - took 0.014 ms]
-[parsing function: b.CreateDoubleResultArray - took 0.622 ms]
-[parsing function: Float64Array - took 0.534 ms]
-[parsing function: Float64ArrayConstructByLength - took 0.056 ms]
-[parsing function: ToPositiveInteger - took 0.028 ms]
-[parsing script: parser.js - took 0.054 ms]
-[parsing function: fullParsed - took 0.019 ms]
-[parsing function: preParsedFunction - took 0.011 ms]
+[parsing function:  - took 0.014 ms]
+[parsing function:  - took 0.013 ms]
+[parsing function: b.CreateDoubleResultArray - took 0.012 ms]
+[parsing function: Float64Array - took 0.061 ms]
+[parsing function: Float64ArrayConstructByLength - took 0.041 ms]
+[parsing function: ToPositiveInteger - took 0.023 ms]
+[parsing script: parser.js - took 0.061 ms]
+[parsing function: fullParsed - took 0.016 ms]
+[parsing function: preParsedFunction - took 0.026 ms]
 preParsedFunction
-[parsing function: innerFunction - took 0.013 ms]
+[parsing function: innerFunction - took 0.015 ms]
 Now I say Hello I am the full parsed function !!!
 ```
 
-He querido mostrar todo la salida por motivos prácticos, pero ignoremos las primeras lineas y enfoquemonos en las últimas 3. Hemos forzado al compilador a parsear todo nuestro codigo y el tiempo de ejecución fue de `0.054 ms` .
+He querido mostrar todo la salida por motivos prácticos, pero ignoremos las primeras lineas y enfoquemonos en las últimas 3. Hemos forzado al compilador a parsear todo nuestro codigo y el tiempo de ejecución fue de `0.061 ms` .
 
-#### Parseo Diferido o Lazy Parser \(Pre-parsing\)
+#### Parseo Diferido o Lazy Parser
 
 Para demosrtar el parseo diferido, simplemente comentaremos la linea 6 para evitar la ejecucion del método `preParsedFunction();` y así el parseador evitara parsear el contenido interno de dicha función, difiriendo el análisis de su contenido cuando el compilador lo necesite.
 
@@ -131,11 +137,13 @@ Para demosrtar el parseo diferido, simplemente comentaremos la linea 6 para evit
 snippets/ch1/parser 
 ➜ v8 parser.js --trace_parse
 ....
-[parsing script: parser.js - took 0.042 ms]
-[parsing function: fullParsed - took 0.015 ms]
+[parsing script: parser.js - took 0.056 ms]
+[parsing function: fullParsed - took 0.014 ms]
 [parsing function: innerFunction - took 0.011 ms]
 Now I say Hello I am the full parsed function !!!
 ```
 
-La ejecución total ha sido de `0.042 ms` , `0.0.12ms`mas rápida que en el parseo completo, esto  ahorra un trabajo incesario al compilador ya que la función jamas fué ejecutada en ningún contexto, ese proceso se le llama **Pre-parsing **o parseo diferido. Esto hace que ell parseo puede llegue a ser x2 veces mas rápido que ejecutando un parseo completo.
+La ejecución total ha sido de `0.056 ms` , `0.05ms`mas rápida que en el parseo completo, el método `preParsedFunction` ha sido pre-parseado, haciendo el parseo inicial mas rápido. Ese proceso se le llama **Lazy Parser **o parseo diferido. Esto hace que ell parseo puede llegue a ser x2 veces mas rápido que ejecutando un parseo completo.
+
+
 
