@@ -133,7 +133,7 @@ He querido mostrar todo la salida por motivos prácticos, pero ignoremos las pri
 
 #### Pre-parseo o Pre-Parser
 
-Es muy probable que no todas las funciones en Javascript sean ejecutadas, o sean ejecutadas mas adelante por algun evento. 
+Es muy probable que no todas las funciones en Javascript sean ejecutadas, o sean ejecutadas mas adelante por algun evento.
 
 > El pre-parseo detecta errores de sintáxis, pero no resuelve el ámbito de las variables usadas en la función o generar AST .
 
@@ -150,4 +150,23 @@ Now I say Hello I am the full parsed function !!!
 ```
 
 La ejecución total ha sido de `0.056 ms` , `0.05ms`mas rápida que en el parseo completo, haciendo el parseo inicial mas rápido. Ese proceso se le llama **Pre-Parser **o pre-parseo. Esto hace que puede lleguar a ser hasta x2 veces mas rápido que ejecutando un parseo completo.
+
+Un diferente escenario donde las funciones son completamente parseadas son las funciones anónimas \(IIFEs\).
+
+```
+function nestedFuntion(message) {
+
+    let f1 = (function innerFunction3(message) {
+      print("innerFunction3");
+      return message;
+    })();
+    return 1;
+  }
+  
+  print(nestedFuntion("I am the full parsed function"));
+```
+
+En el ejemplo anterior `innerFunction3` es una declaración de una funcion y se asigna a la variable `f1` pero jamas es invocada. Debido a la heurística de V8 todas las funciones anónimas son siempre parseadas.
+
+
 
