@@ -62,7 +62,7 @@ type:"Literal", value:4}}]}]})
 
 ### Tipos de Parsing
 
- V8 es capaz de aplicar 2 tipos de análisis sintáctico al código fuente
+V8 es capaz de aplicar 2 tipos de análisis sintáctico al código fuente.
 
 * Parser completo \(Full parsing\)
 * Lazy Parser o Parseo Diferido
@@ -71,28 +71,30 @@ Analicemos el siguiente código fuente usando el argumento `--trace_parse` dispo
 
 ```
 function innerFunction(message) {
-	return "Now I say " + message + " !!!";
+    return "Now I say " + message + " !!!";
 }
 
 function fullParsed(message) {
-	preParsedFunction(2, 5);
-	return innerFunction("Hello " + message);
+    preParsedFunction(2, 5);
+    return innerFunction("Hello " + message);
 }
 
 function preParsedFunction(a, b) {
-	var length = 10;
-	var update = [];
-	for (var index = 0; index < length; index++) {
-		update.push(a * b);
-	}
-	print("preParsedFunction");
-	return update;
+    var length = 10;
+    var update = [];
+    for (var index = 0; index < length; index++) {
+        update.push(a * b);
+    }
+    print("preParsedFunction");
+    return update;
 }
 
 print(fullParsed("I am the full parsed function"));
 ```
 
-Tengamos en cuenta que tenemos 3 métodos declarados, `innerFunction` , `fullParsed` y `preParsedFunction`. Vamos a ejectuar lo anterior en el motor V8.
+Tengamos en cuenta que tenemos 3 métodos declarados, `innerFunction` , `fullParsed` y `preParsedFunction`. 
+
+Parsear el código toma tiempo, asi que los motores de Javacript tratan de evitar un parseo completo, en las siguientes secciones vamos analizar detalladamente algunos de los posibles escenarios más comunes.
 
 #### Parser completo \(Full parsing\)
 
@@ -144,6 +146,4 @@ Now I say Hello I am the full parsed function !!!
 ```
 
 La ejecución total ha sido de `0.056 ms` , `0.05ms`mas rápida que en el parseo completo, el método `preParsedFunction` ha sido pre-parseado, haciendo el parseo inicial mas rápido. Ese proceso se le llama **Lazy Parser **o parseo diferido. Esto hace que ell parseo puede llegue a ser x2 veces mas rápido que ejecutando un parseo completo.
-
-
 
