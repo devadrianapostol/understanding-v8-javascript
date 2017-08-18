@@ -162,11 +162,9 @@ function nestedFuntion(message) {
     })();
     return 1;
   }
-  
+
   print(nestedFuntion("I am the full parsed function"));
 ```
 
-En el ejemplo anterior `innerFunction3` es una declaración de una funcion y se asigna a la variable `f1` pero jamas es invocada. Debido a la heurística de V8 todas las funciones anónimas son siempre parseadas.
-
-
+En el ejemplo anterior `innerFunction3` es una declaración de una funcion y se asigna a la variable `f1` pero jamas es invocada. Debido a la heurística de V8 **todas las funciones anónimas son siempre parseadas.**
 
