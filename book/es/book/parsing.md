@@ -1,6 +1,10 @@
 # Analizador \(Parser\)
 
-El Analizador \(Parser\) es el proceso donde V8 separa en **tokens** el texto donde el motor convertira posteriormente a Sintaxis Abstracta o AST.
+### Qué es parseo?
+
+El parseador toma el código fuente de Javascript y** construye estructuras de datos llamadas AST y los ámbitos basados en ellos**, después el generador de código de bytes va a través de esas estructuras y genera código de bytes, luego el mismo es interpretado por el interpretador \(interpreter\) y el compilador optimizado usa el código de bytes y lo convierte en lenguaje de máquina que es ejecutado directamente.
+
+En este capítulo vamos a analizar la primera fase, el analizador \(o parseador\), como el código fuente es convertido en estructuras de datos y ver por etapas multiples escenarios de parseo.
 
 ### Analizador léxico \(Scaner\)
 
