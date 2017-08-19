@@ -22,7 +22,7 @@ Veámos un ejemplo, en Javascript existen muchas [palabras clave](https://mathia
 
 ### Analizador Sintáctico \(Parser\)
 
-El analizador sintáctico es un proceso completamente transparente para el desarrollador, pero no por eso debemos ignorar este paso, hoy en dia es una herramienta muy util que usamos en herramientas como `eslint`.
+El analizador sintáctico es un **proceso donde comprueba que los tokens forman una expresión permisible**, esta fase es completamente transparente para el desarrollador, pero no por eso debemos ignorar este paso, hoy en dia es una herramienta muy util que usamos en herramientas como `eslint`.
 
 #### SpiderMonkey Parser API
 
@@ -104,6 +104,8 @@ Parsear el código toma tiempo, asi que los motores de Javacript tratan de evita
 
 Un parseo completo es cuando el compilador se ve forzado a parsear todas las sentencias encontradas en el script. En el ejemplo anterior haremos uso de todas las funciones declaradas y veremos cual es el resultado.
 
+> El parseo completo construye el Arbol Sintacto y es ~3x más lento
+
 ```
 v8 parser.js --trace_parse
 [parsing script: native harmony-regexp-exec.js - took 0.328 ms]
@@ -139,9 +141,9 @@ He querido mostrar todo la salida por motivos prácticos, pero ignoremos las pri
 
 Es muy probable que no todas las funciones en Javascript sean ejecutadas, o sean ejecutadas mas adelante por algun evento.
 
-> El pre-parseo detecta errores de sintáxis, pero no resuelve el ámbito de las variables usadas en la función o generar AST .
+> El pre-parseo detecta errores de sintáxis, pero no resuelve el ámbito de las variables usadas en la función o generar AST, solo detecta la structura solamente y se limita donde estan los límites de las funciones.
 
-Para demostar el pre-parseo, simplemente comentaremos la linea 6 `preParsedFunction(2, 5);`  y así el compilador pre-parseara según se espera difiriendo el análisis de su contenido cuando el compilador lo necesite.
+Para demostar el pre-parseo, simplemente comentaremos la linea 6 `preParsedFunction(2, 5);`  y así el compilador pre-parseara según se espera difiriendo el análisis de su contenido cuando el compilador lo necesite \(lazy parsing\).
 
 ```
 snippets/ch1/parser 
@@ -153,7 +155,7 @@ snippets/ch1/parser
 Now I say Hello I am the full parsed function !!!
 ```
 
-La ejecución total ha sido de `0.056 ms` , `0.05ms`mas rápida que en el parseo completo, haciendo el parseo inicial mas rápido. Ese proceso se le llama **Pre-Parser **o pre-parseo. Esto hace que puede lleguar a ser hasta x2 veces mas rápido que ejecutando un parseo completo.
+La ejecución total ha sido de `0.056 ms` , `0.05ms`mas rápida que en el parseo completo, haciendo el parseo inicial mas rápido. Ese proceso se le llama **Pre-Parser **o pre-parseo. Esto hace que puede lleguar a ser hasta x3 veces mas rápido que ejecutando un parseo completo.
 
 Un diferente escenario donde las funciones son completamente parseadas son las funciones anónimas \(IIFEs\).
 
@@ -170,5 +172,39 @@ function nestedFuntion(message) {
   print(nestedFuntion("I am the full parsed function"));
 ```
 
-En el ejemplo anterior `innerFunction3` es una declaración de una funcion y se asigna a la variable `f1` pero jamas es invocada. Debido a la heurística de V8 **todas las funciones anónimas son siempre parseadas.**
+En el ejemplo anterior `innerFunction3` es una declaración de una funcion y se asigna a la variable `f1` pero jamas es invocada. Debido a una especial heurística de V8 **todas las funciones anónimas son siempre parseadas.**
+
+### Lazy Parsing \(Parseo Diferido\)
+
+La mayoría de los motores de Javascript tienen la habilidad de diferir el proceso de parseo de una función hasta que es completamente necesaria.
+
+```
+function sum(a, b) {
+	return a + b;
+}
+
+function subs(a, b) {
+	return a - b;
+} 
+
+print(sum(1,2));
+```
+
+En el ejemplo anterior tenemos dos declaraciones, `sum`  y `subs` pero solo `sum` es invocada en el ultimo paso.
+
+Como el parseador interpreta lo anterior es lo que vamos a describir a continuación:
+
+1. La función `sum` es declarada. Acepta argumentos `a` y `b` y retorna una suma de los mismos.
+2. La función subs es declarada. Acepta argumentos `a` y `b` y retorna una resta de los mismos.
+3. Ejecutamos la funcion `sum` con los argumentos `1` y `2` .
+
+Aquí el motor no analiza en profundidad el contenido de cada sentencia y difiere su analisis interno para cuando lo necesite.
+
+ La ultima sentencia cambia las cosas porque invocamos la función.`print(sum(1,2));` y entonces el compilador procesa el contenido de la funcion `sum` .
+
+El pareador diferido necesita parsear el código interno de la función `add` antes de su ejecución para localizar el cuerpo entero de la función, solo se consume el código, no genera AST, esto significa que se obtiene cierto grado de optimización en el sistema evitando consumo de memoria y mejorando la velocidad de ejecución.
+
+
+
+
 
