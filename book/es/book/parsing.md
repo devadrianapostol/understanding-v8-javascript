@@ -180,11 +180,11 @@ La mayoría de los motores de Javascript tienen la habilidad de diferir el proce
 
 ```
 function sum(a, b) {
-	return a + b;
+    return a + b;
 }
 
 function subs(a, b) {
-	return a - b;
+    return a - b;
 } 
 
 print(sum(1,2));
@@ -200,11 +200,7 @@ Como el parseador interpreta lo anterior es lo que vamos a describir a continuac
 
 Aquí el motor no analiza en profundidad el contenido de cada sentencia y difiere su analisis interno para cuando lo necesite.
 
- La ultima sentencia cambia las cosas porque invocamos la función.`print(sum(1,2));` y entonces el compilador procesa el contenido de la funcion `sum` .
+La ultima sentencia cambia las cosas porque invocamos la función.`print(sum(1,2));` y entonces el compilador procesa el contenido de la funcion `sum` .
 
 El pareador diferido necesita parsear el código interno de la función `add` antes de su ejecución para localizar el cuerpo entero de la función, solo se consume el código, no genera AST, esto significa que se obtiene cierto grado de optimización en el sistema evitando consumo de memoria y mejorando la velocidad de ejecución.
-
-
-
-
 
