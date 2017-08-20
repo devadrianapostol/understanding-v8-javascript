@@ -204,3 +204,7 @@ La ultima sentencia cambia las cosas porque invocamos la función.`print(sum(1,2
 
 El pareador diferido necesita parsear el código interno de la función `add` antes de su ejecución para localizar el cuerpo entero de la función, solo se consume el código, no genera AST, esto significa que se obtiene cierto grado de optimización en el sistema evitando consumo de memoria y mejorando la velocidad de ejecución.
 
+
+
+
+
