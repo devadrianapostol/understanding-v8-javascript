@@ -1,0 +1,1 @@
+var expr = Reflect.parse("obj.foo + 42").body[0].expression
